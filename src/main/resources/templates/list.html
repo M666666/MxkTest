@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>全查页面</title>
+    <link href="/bootstrap.css" rel="stylesheet">
+</head>
+
+<style>
+    .css {
+        width: 800px;
+        margin-top: 40px;
+    }
+    tr {
+        text-align: center;
+    }
+    th {
+        text-align: center;
+    }
+    top {
+        margin-top: -40px;
+    }
+</style>
+<ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+        <a class="nav-link active" th:href="@{/loginIndex}">首页</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/getAllPerson}">用户列表</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/loginIndex}">测试</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" th:href="@{/logoAll}" tabindex="-1" aria-disabled="true">登录日志</a>
+    </li>
+</ul>
+<h1 align="center"> 创建用户列表 </h1>
+<body>
+
+<table class="css table table-hover" align="center" border="2px">
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>密码</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="login:${pageInfo.list}">
+        <td th:text="${login.loginId}"></td>
+        <td th:text="${login.username}"></td>
+        <td th:text="${login.password}"></td>
+        <td th:text="${login.createTime}"></td>
+        <td>
+            <!--跳转详情页面-->
+            <a class="btn btn-success" th:href="@{/fanById/}+${login.loginId}">详情</a>
+            <!--跳转修改页面-->
+            <a class="btn btn-primary" th:href="@{/updateLogin/}+${login.loginId}">修改</a>
+            <!--删除-->
+            <a class="btn btn-danger" th:href="@{/delLoginById/}+${login.loginId}">删除</a>
+        </td>
+    </tr>
+</table>
+<footer class="navbar-fixed-bottom top">
+    <nav aria-label="Page navigation" align="center">
+        <ul class="pagination">
+            <li>
+                <!--首页-->
+                <a th:href="@{/getAllPerson}" aria-label="Previous">
+                    <span aria-hidden="true">首页</span>
+                </a>
+            </li>
+            <!--上一页-->
+            <li><a th:href="@{/getAllPerson(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><<</a></li>
+            <!--下一页-->
+            <li>
+                <a th:href="@{/getAllPerson(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">>></a>
+            </li>
+            <li>
+                <!--尾页-->
+                <a th:href="@{/getAllPerson(pageNum=${pageInfo.pages})}" aria-label="Next">
+                    <span aria-hidden="true">尾页</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+</body>
+</html>

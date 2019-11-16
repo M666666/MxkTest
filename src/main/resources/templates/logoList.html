@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IP</title>
+    <link href="/bootstrap.css" rel="stylesheet">
+</head>
+<style>
+    .css {
+        width: 800px;
+        margin-top: 40px;
+    }
+    tr {
+        text-align: center;
+    }
+    th {
+        text-align: center;
+    }
+    top {
+        margin-top: -40px;
+    }
+</style>
+<body>
+<ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+        <a class="nav-link active" th:href="@{/loginIndex}">首页</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/getAllPerson}">用户列表</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/loginIndex}">测试</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" th:href="@{/logoAll}" tabindex="-1" aria-disabled="true">登录日志</a>
+    </li>
+</ul>
+
+<h1 align="center"> 访问IP </h1>
+
+<table class="css table table-hover" align="center" border="2px">
+    <tr>
+        <th>编号</th>
+        <th>访问人</th>
+        <th>IP</th>
+        <th>访问时间</th>
+    </tr>
+    <tr th:each="logo:${pageInfo.list}">
+        <td th:text="${logo.logoid}"></td>
+        <td th:text="${logo.username}"></td>
+        <td th:text="${logo.ip}"></td>
+        <td th:text="${logo.createTime}"></td>
+    </tr>
+</table>
+
+<footer class="navbar-fixed-bottom top">
+    <nav aria-label="Page navigation" align="center">
+        <ul class="pagination">
+            <li>
+                <!--首页-->
+                <a th:href="@{/logoAll}" aria-label="Previous">
+                    <span aria-hidden="true">首页</span>
+                </a>
+            </li>
+            <!--上一页-->
+            <li><a th:href="@{/logoAll(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><<</a></li>
+            <!--下一页-->
+            <li>
+                <a th:href="@{/logoAll(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">>></a>
+            </li>
+            <li>
+                <!--尾页-->
+                <a th:href="@{/logoAll(pageNum=${pageInfo.pages})}" aria-label="Next">
+                    <span aria-hidden="true">尾页</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+</body>
+</html>

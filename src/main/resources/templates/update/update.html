@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户页面</title>
+    <link href="/bootstrap.css" rel="stylesheet">
+</head>
+
+<h1 align="center"> 用户修改</h1>
+<body>
+<div style="width:600px;height:100%;margin-left:270px;margin-top: 40px">
+    <form th:action="@{/saveUp}" method="post">
+        I D：<input class="form-control" id="loginId" name="loginId" th:field="${upLogin.loginId}"
+                   readonly="readonly"><br>
+        用户名：<input class="form-control" type="text" name="username" th:field="${upLogin.username}"><br>
+        密 码：<input class="form-control" type="text" name="password" th:field="${upLogin.password}"><br>
+        <!--年  龄：<input class="form-control" type="date" name="createTime" th:field="${upLogin.createTime}" readonly="readonly"><br>-->
+        <a th:href="@{/saveUp}">
+            <input class="btn btn-primary" type="submit" value="修改">
+        </a>
+        <a href="add.html" th:href="@{/add/add}">
+            <input class="btn btn-default" type="reset" value="重置">
+        </a>
+        <a th:href="@{/getAllPerson}">
+            <input class="btn btn-default" type="button" value="返回">
+        </a>
+    </form>
+</div>
+</body>
+</html>

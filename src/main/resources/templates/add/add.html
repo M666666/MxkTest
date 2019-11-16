@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户添加页面</title>
+    <link href="/bootstrap.css" rel="stylesheet">
+</head>
+<h1 align="center"> 用户添加</h1>
+<div style="width:600px;height:100%;margin-left:270px;margin-top: 40px">
+<body>
+<form th:action="@{/saveLogin}" method="post">
+    用户名：<input class="form-control" type="text" name="username" th:field="${login.username}"><br>
+    密  码：<input class="form-control" type="text" name="password" th:field="${login.password}"><br>
+    创建时间：<input class="form-control"  id="today" type="text" name="createTime" th:field="${login.createTime}" readonly="readonly"><br>
+    <a th:href="@{/saveLogin}">
+        <input class="btn btn-primary" type="submit" value="提交">
+    </a>
+    <a href="add.html" th:href="@{/add/add}">
+        <input class="btn btn-default" type="reset" value="重置">
+    </a>
+    <a  th:href="@{/userLogin}">
+        <input class="btn btn-default" type="button" value="返回">
+    </a>
+
+
+    <!--//获取当前时间-->
+    <script type="text/javascript">
+        function today(){//构建方法
+            var today=new Date();//new 出当前时间
+            var h=today.getFullYear();//获取年
+            var m=today.getMonth()+1;//获取月
+            var d=today.getDate();//获取日
+            var H = today.getHours();//获取时
+            var M = today.getMinutes();//获取分
+            var S = today.getSeconds();//获取秒
+            return h+"-"+m+"-"+d+" "+H+":"+M+":"+S; //返回 年-月-日 时:分:秒
+        }
+        document.getElementById("today").value = today();//将获取到的 年-月-日 时:分:秒 赋给input文本输入框
+    </script>
+</form>
+</body>
+</div>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户详情页面</title>
+    <link href="/bootstrap.css" rel="stylesheet">
+</head>
+<h1 align="center"> 用户详情</h1>
+<body>
+<div style="width:600px;height:100%;margin-left:270px;margin-top: 40px">
+    <form>
+        I D：<input class="form-control" id="loginId" name="loginId" th:field="${fanById.loginId}"
+                   readonly="readonly"><br>
+        用户名：<input class="form-control" type="text" name="username" th:field="${fanById.username}"
+                   readonly="readonly"><br>
+        密 码：<input class="form-control" type="text" name="password" th:field="${fanById.password}"
+                   readonly="readonly"><br>
+        创建时间：<input class="form-control" name="createTime" th:field="${fanById.createTime}"
+                   readonly="readonly"><br>
+        <a th:href="@{/getAllPerson}" align="center">
+            <input class="btn btn-default" type="button" value="返回">
+        </a>
+    </form>
+</div>
+</body>
+</html>
