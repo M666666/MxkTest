@@ -36,5 +36,4 @@ public class LogoController {
         System.out.println("分页全查....." + pageInfo);
         return "logoList";
     }
-
 }
