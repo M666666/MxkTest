@@ -22,15 +22,15 @@
     }
 </style>
 <ul class="nav nav-pills nav-justified">
-    <li class="nav-item">
-        <a class="nav-link active" th:href="@{/loginIndex}">首页</a>
-    </li>
+    <!--<li class="nav-item">-->
+        <!--<a class="nav-link active" th:href="@{/loginIndex}">首页</a>-->
+    <!--</li>-->
     <li class="nav-item">
         <a class="nav-link" th:href="@{/getAllPerson}">用户列表</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/loginIndex}">测试</a>
-    </li>
+    <!--<li class="nav-item">-->
+        <!--<a class="nav-link" th:href="@{/loginIndex}">测试</a>-->
+    <!--</li>-->
     <li class="nav-item">
         <a class="nav-link disabled" th:href="@{/logoAll}" tabindex="-1" aria-disabled="true">登录日志</a>
     </li>
@@ -38,11 +38,13 @@
 <h1 align="center"> 创建用户列表 </h1>
 <body>
 
+
 <table class="css table table-hover" align="center" border="2px">
     <tr>
         <th>编号</th>
         <th>姓名</th>
         <th>密码</th>
+        <th>职务</th>
         <th>创建时间</th>
         <th>操作</th>
     </tr>
@@ -50,6 +52,7 @@
         <td th:text="${login.loginId}"></td>
         <td th:text="${login.username}"></td>
         <td th:text="${login.password}"></td>
+        <td th:text="${login.logindept}"></td>
         <td th:text="${login.createTime}"></td>
         <td>
             <!--跳转详情页面-->

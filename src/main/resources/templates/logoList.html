@@ -11,31 +11,44 @@
         width: 800px;
         margin-top: 40px;
     }
+
     tr {
         text-align: center;
     }
+
     th {
         text-align: center;
     }
+
     top {
         margin-top: -40px;
     }
 </style>
 <body>
+<!--顶部菜单栏-->
 <ul class="nav nav-pills nav-justified">
-    <li class="nav-item">
-        <a class="nav-link active" th:href="@{/loginIndex}">首页</a>
-    </li>
+    <!--<li class="nav-item">-->
+    <!--<a class="nav-link active" th:href="@{/loginIndex}">首页</a>-->
+    <!--</li>-->
     <li class="nav-item">
         <a class="nav-link" th:href="@{/getAllPerson}">用户列表</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/loginIndex}">测试</a>
-    </li>
+    <!--<li class="nav-item">-->
+    <!--<a class="nav-link" th:href="@{/loginIndex}">测试</a>-->
+    <!--</li>-->
     <li class="nav-item">
         <a class="nav-link disabled" th:href="@{/logoAll}" tabindex="-1" aria-disabled="true">登录日志</a>
     </li>
 </ul>
+
+<p id="demo"></p>
+
+<!--详情和删除弹框-->
+<script>
+    function myFunction() {
+        alert("不是管理员,不可以操作");
+    }
+</script>
 
 <h1 align="center"> 访问IP </h1>
 
@@ -45,12 +58,17 @@
         <th>访问人</th>
         <th>IP</th>
         <th>访问时间</th>
+        <th>操作</th>
     </tr>
     <tr th:each="logo:${pageInfo.list}">
         <td th:text="${logo.logoid}"></td>
         <td th:text="${logo.username}"></td>
         <td th:text="${logo.ip}"></td>
         <td th:text="${logo.createTime}"></td>
+        <td>
+            <a class="btn btn-success" onclick="myFunction()">详情</a>
+            <a class="btn btn-danger"  disabled="disabled">删除</a>
+        </td>
     </tr>
 </table>
 

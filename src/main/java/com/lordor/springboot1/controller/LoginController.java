@@ -28,17 +28,15 @@ public class LoginController {
 
     /**
      * 首页跳转
-     *
      * @return
      */
-    @RequestMapping("/loginIndex")
+    @RequestMapping("/")
     public String LoginAll() {
-        return "index";
+        return "redirect:/userLogin";
     }
 
     /**
      * 跳转到用户登录页面
-     *
      * @return 登录页面
      */
     @RequestMapping("/userLogin")
@@ -48,14 +46,13 @@ public class LoginController {
 
     /**
      * 用户全查分页
-     *
      * @param model
      * @param pageNum
      * @return
      */
     @RequestMapping("/getAllPerson")
     public String getAllPerson(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
-        PageHelper.startPage(pageNum, 7);
+        PageHelper.startPage(pageNum, 8);
         List<Login> list = loginService.loginAll();
         PageInfo<Login> pageInfo = new PageInfo<Login>(list);
         model.addAttribute("pageInfo", pageInfo);
@@ -69,10 +66,10 @@ public class LoginController {
                           @Param("password") String password,
                           HttpServletRequest request) {
         if (StringUtils.isEmpty(username)) {
-            return "redirect:/userLogin";
+            return "404/404";
         }
         if (StringUtils.isEmpty(password)) {
-            return "redirect:/userLogin";
+            return "404/404";
         }
         Login user = loginService.loginOn(username, password);
         if (user != null) {
@@ -90,7 +87,6 @@ public class LoginController {
 
     /**
      * //删除用户
-     *
      * @param id
      * @return
      */
@@ -103,7 +99,6 @@ public class LoginController {
 
     /**
      * //添加用户
-     *
      * @param map
      * @return
      */
@@ -124,10 +119,10 @@ public class LoginController {
     public String saveLogin(@ModelAttribute Login login) {
         //判断添加用户,账号密码不能为空
         if (StringUtils.isEmpty(login.getUsername())) {
-            return "账号不能为空";
+            return "404/404";
         }
         if (StringUtils.isEmpty(login.getPassword())) {
-            return "密码不能为空";
+            return "404/404";
         }
         loginService.addLogin(login);
         System.out.println("添加成功......" + login);
@@ -154,6 +149,9 @@ public class LoginController {
     public String saveUp(Login login) {
         if (StringUtils.isEmpty(login.getUsername())) {
             return "账号不能为空";
+        }else if (login.getUsername() == " ")
+        {
+            return "账号不能为空";
         }
         if (StringUtils.isEmpty(login.getPassword())) {
             return "密码不能为空";
@@ -165,7 +163,6 @@ public class LoginController {
 
     /**
      * 用户详情页面
-     *
      * @param id
      * @param model
      * @return

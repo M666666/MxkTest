@@ -18,18 +18,19 @@ public class LogoController {
     /**
      * 日志表
      */
+
     @Autowired
     LogoService logoService;
 
     /**
-     * 用户全查分页
+     * 日志全查分页
      * @param model
      * @param pageNum
      * @return
      */
     @RequestMapping("/logoAll")
     public String getAllPerson(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, 8);
         List<LogoEntity> list = logoService.listAll();
         PageInfo<LogoEntity> pageInfo = new PageInfo<LogoEntity>(list);
         model.addAttribute("pageInfo", pageInfo);

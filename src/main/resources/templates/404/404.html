@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>账号密码出错</title>
+    <title>404</title>
     <link href="/bootstrap.css" rel="stylesheet">
 </head>
+<style>
+    .a{
+        margin-top: 150px;
+    }
+</style>
+<script>
+    function JumpToURL() {
+        location = /userLogin/;
+    }
+    setTimeout('JumpToURL()', 5000);
+</script>
 
-<body>
-
-
+<body background="/img/timg.jpg" width="100%" height="auto">
+<!--<meta http-equiv="refresh" content="3;URL="/>-->
+<div align="center" class="a">
+    <a class="btn btn-danger" href="404.html" th:href="@{/userLogin}">用户名或密码不能为空 5秒后返回登录界面</a>
+</div>
 </body>
 </html>

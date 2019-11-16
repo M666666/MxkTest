@@ -21,7 +21,7 @@ public class TestController {
     public String test(HttpServletRequest request) {
         //获取IP地址
         String ipAddress = IpUtil.getIpAddr(request);
-        System.out.println("这是id....."+ipAddress);
+        System.out.println("这是ip....."+ipAddress);
         return "index";
     }
 }

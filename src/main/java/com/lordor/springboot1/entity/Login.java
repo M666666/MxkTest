@@ -7,7 +7,10 @@ public class Login {
     private Integer loginId;
     private String username;
     private String password;
+    private String logindept;
     private Timestamp createTime;
+
+
 
     public Integer getLoginId() {
         return loginId;
@@ -19,6 +22,10 @@ public class Login {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getLogindept() {
+        return logindept;
     }
 
     public Timestamp getCreateTime() {
@@ -37,6 +44,10 @@ public class Login {
         this.password = password;
     }
 
+    public void setLogindept(String logindept) {
+        this.logindept = logindept;
+    }
+
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
@@ -47,6 +58,7 @@ public class Login {
                 "loginId=" + loginId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", logindept='" + logindept + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }
