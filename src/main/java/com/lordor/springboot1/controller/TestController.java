@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class TestController {
+
+    /**
+     * 测试类
+     * @return
+     */
+
     @ResponseBody
     @RequestMapping("/index")
     public String Test() {
@@ -21,7 +27,7 @@ public class TestController {
     public String test(HttpServletRequest request) {
         //获取IP地址
         String ipAddress = IpUtil.getIpAddr(request);
-        System.out.println("这是ip....."+ipAddress);
+        System.out.println("这是ip....." + ipAddress);
         return "index";
     }
 }

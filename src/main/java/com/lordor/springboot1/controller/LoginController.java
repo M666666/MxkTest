@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lordor.springboot1.Util.IpUtil;
 import com.lordor.springboot1.entity.Login;
-import com.lordor.springboot1.entity.LogoEntity;
 import com.lordor.springboot1.service.LoginService;
 import com.lordor.springboot1.service.LogoService;
 import org.apache.ibatis.annotations.Param;
@@ -21,8 +20,10 @@ import java.util.List;
 @Controller
 public class LoginController {
 
+    //用户  LoginService
     @Autowired
     private LoginService loginService;
+    //日志  LogoService
     @Autowired
     private LogoService logoService;
 
@@ -74,7 +75,6 @@ public class LoginController {
         Login user = loginService.loginOn(username, password);
         if (user != null) {
             //获取登录人的ip地址 添加进日志表
-            //获取ip地址
             String ipAddr = IpUtil.getIpAddr(request);
             //把 username 和 ip 一起添加进logo表里面
             logoService.addLogo(username,ipAddr);
@@ -149,7 +149,7 @@ public class LoginController {
     public String saveUp(Login login) {
         if (StringUtils.isEmpty(login.getUsername())) {
             return "账号不能为空";
-        }else if (login.getUsername() == " ")
+        }else if (login.getUsername().equals(" "))
         {
             return "账号不能为空";
         }
