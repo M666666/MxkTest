@@ -1,7 +1,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<title>演示啦</title>
 	<link href="/bootstrap.css" rel="stylesheet">
 </head>
 <body>
