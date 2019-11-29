@@ -8,9 +8,7 @@ import java.util.List;
 @Mapper
 @Component
 public interface LoginMapper {
-
     //用户登录
-    //登录
     @Select("select * from login where username=#{username} and password=#{password}")
     Login loginOn(@Param("username") String username,@Param("password") String password);
 
@@ -32,6 +30,9 @@ public interface LoginMapper {
     int addLogin(Login login);
 
     //修改用户
-    @Update("update login set username=#{username},password=#{password}  where loginId=#{loginId} ")
+    @Update("update login set username=#{username},password=#{password}  where loginId=#{loginId}")
     int updateLogin(Login login);
+
+    //判断用户等级 游客还是管理员
+
 }

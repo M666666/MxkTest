@@ -29,6 +29,7 @@ public class LoginController {
 
     /**
      * 首页跳转
+     *
      * @return
      */
     @RequestMapping("/")
@@ -38,6 +39,7 @@ public class LoginController {
 
     /**
      * 跳转到用户登录页面
+     *
      * @return 登录页面
      */
     @RequestMapping("/userLogin")
@@ -47,6 +49,7 @@ public class LoginController {
 
     /**
      * 用户全查分页
+     *
      * @param model
      * @param pageNum
      * @return
@@ -61,7 +64,14 @@ public class LoginController {
         return "list";
     }
 
-    /* 用户登录检测 */
+    /**
+     * 用户登录检测
+     *
+     * @param username
+     * @param password
+     * @param request
+     * @return
+     */
     @RequestMapping("/longOn")
     public String loginOn(@Param("username") String username,
                           @Param("password") String password,
@@ -77,7 +87,7 @@ public class LoginController {
             //获取登录人的ip地址 添加进日志表
             String ipAddr = IpUtil.getIpAddr(request);
             //把 username 和 ip 一起添加进logo表里面
-            logoService.addLogo(username,ipAddr);
+            logoService.addLogo(username, ipAddr);
             //登录成功重定向到 全查页面
             System.out.println("添加成功.....");
             return "redirect:/getAllPerson";
@@ -87,18 +97,32 @@ public class LoginController {
 
     /**
      * //删除用户
+     *
      * @param id
      * @return
      */
     @RequestMapping("/delLoginById/{id}")
     public String delLoginById(@PathVariable("id") Integer id) {
+//        //获取这个人是不是管理员,不是管理员的话可以删除
+//        Login login =  loginService.LoginById(id);
+//        System.out.println("这应该是删除这一条数" + login);
+//        if (login.getLogindept().equals("0"))
+//        {
+//            loginService.delLoginById(id);
+//            System.out.println("删除咯..........");
+//        }else
+//        {
+//           return  "不可以删除管理员";
+//        }
+
         loginService.delLoginById(id);
-        System.out.println("删除..........");
+        System.out.println("删除咯..........");
         return "redirect:/getAllPerson";
     }
 
     /**
      * //添加用户
+     *
      * @param map
      * @return
      */
@@ -149,8 +173,7 @@ public class LoginController {
     public String saveUp(Login login) {
         if (StringUtils.isEmpty(login.getUsername())) {
             return "账号不能为空";
-        }else if (login.getUsername().equals(" "))
-        {
+        } else if (login.getUsername().equals(" ")) {
             return "账号不能为空";
         }
         if (StringUtils.isEmpty(login.getPassword())) {
@@ -163,6 +186,7 @@ public class LoginController {
 
     /**
      * 用户详情页面
+     *
      * @param id
      * @param model
      * @return

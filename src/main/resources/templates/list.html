@@ -52,9 +52,9 @@
         <td th:text="${login.loginId}"></td>
         <td th:text="${login.username}"></td>
         <td th:text="${login.password}"></td>
-        <td th:text="${login.logindept}"></td>
+        <td th:text="${login.logindept}==0?'游客':'管理员'"></td>
         <td th:text="${login.createTime}"></td>
-        <td>
+        <td >
             <!--跳转详情页面-->
             <a class="btn btn-success" th:href="@{/fanById/}+${login.loginId}">详情</a>
             <!--跳转修改页面-->
