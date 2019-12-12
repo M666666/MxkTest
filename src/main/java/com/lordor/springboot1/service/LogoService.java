@@ -13,13 +13,13 @@ public class LogoService {
     @Autowired
     LogoMapper logoMapper;
 
-    //用户ip保存
+    //保存 用户名username 和 ip地址
     public int addLogo(String username,String ip)
     {
         return  logoMapper.addLogo(username,ip);
     }
 
-    //用户ip全查
+    //用户全查
     public List<LogoEntity> listAll()
     {
         return logoMapper.listAll();

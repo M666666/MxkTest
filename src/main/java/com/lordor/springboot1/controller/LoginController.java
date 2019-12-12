@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+//@RestController
+//@RequestMapping(value = "/users")
 public class LoginController {
 
     //用户  LoginService
@@ -57,8 +59,8 @@ public class LoginController {
     @RequestMapping("/getAllPerson")
     public String getAllPerson(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         PageHelper.startPage(pageNum, 8);
-        List<Login> list = loginService.loginAll();
-        PageInfo<Login> pageInfo = new PageInfo<Login>(list);
+        List<Login> Login = loginService.loginAll();
+        PageInfo<Login> pageInfo = new PageInfo<Login>(Login);
         model.addAttribute("pageInfo", pageInfo);
         System.out.println("分页全查....." + pageInfo);
         return "list";
@@ -129,25 +131,24 @@ public class LoginController {
     @RequestMapping("/addLogin")
     public String addLogin(ModelMap map) {
         map.addAttribute("login", new Login());
-        System.out.println("跳转添加.......");
+        System.out.println("跳转添加......."+new Login());
         return "add/add";
     }
 
     /**
      * 用户添加
-     *
      * @param login
      * @return
      */
     @RequestMapping("/saveLogin")
     public String saveLogin(@ModelAttribute Login login) {
-        //判断添加用户,账号密码不能为空
-        if (StringUtils.isEmpty(login.getUsername())) {
-            return "404/404";
-        }
-        if (StringUtils.isEmpty(login.getPassword())) {
-            return "404/404";
-        }
+//        //判断添加用户,账号密码不能为空
+//        if (StringUtils.isEmpty(login.getUsername())) {
+//            return "404/404";
+//        }
+//        if (StringUtils.isEmpty(login.getPassword())) {
+//            return "404/404";
+//        }
         loginService.addLogin(login);
         System.out.println("添加成功......" + login);
         return "redirect:/userLogin";
